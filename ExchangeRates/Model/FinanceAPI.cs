@@ -1,12 +1,11 @@
-﻿
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
 
 namespace ExchangeRates.Model
 {
-    public static class Finance
+    public static class FinanceApi
     {
         private const string Url = "http://resources.finance.ua/ru/public/currency-cash.xml";
         public static XmlDocument RawData { get; } = new XmlDocument();
@@ -15,6 +14,7 @@ namespace ExchangeRates.Model
         private const string Organizations = "organizations";
         private const string OrgTypes = "org_types";
         private const string Currencies = "currencies";
+        private const string     Advent = "currencies";
         private const string Regions = "regions";
         private const string Cities = "cities";
         private const string Source = "source";
@@ -25,6 +25,18 @@ namespace ExchangeRates.Model
         private const string Phone = "phone";
         private const string Address = "address";
 
+        public static string GetValidValue(List<ExtraDataModel> data, string id)
+        {
+            var value = "";
+            foreach (var element in data)
+            {
+                if (element.Id != id) continue;
+
+                value = element.Title;
+                break;
+            }
+            return value;
+        }
         public static void UpdateData()
         {
             RawData.Load(Url);
@@ -52,7 +64,7 @@ namespace ExchangeRates.Model
                 // cycle in organization in organizations (node)
                 foreach (XmlNode orgData in organization.ChildNodes)
                 {
-                    if (orgData.Attributes.Count == 0)
+                    if (orgData.Attributes.Count == 0 && orgData.Name != Currencies)
                         continue;
 
                     switch (orgData.Name)

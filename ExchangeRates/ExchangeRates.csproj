@@ -55,10 +55,13 @@
     </Compile>
     <Compile Include="Model\CurrencyModel.cs" />
     <Compile Include="Model\ExtraDataModel.cs" />
-    <Compile Include="Model\Finance.cs" />
+    <Compile Include="Model\FinanceAPI.cs" />
     <Compile Include="Model\OrganizationModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\CurrencyViewModel.cs" />
+    <Compile Include="ViewModel\OrganizationViewModel.cs" />
+    <Compile Include="ViewModel\FinanceView.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
