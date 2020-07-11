@@ -180,7 +180,7 @@ namespace ExchangeRates
             FillInCurrencyChoice();
             FillInFilesChoice();
         }
-        private void ShowOldFile(string name) // Made by Eugene 
+        private void ShowOldFile(string name)  
         {
             if (name == "")
             {
@@ -190,7 +190,7 @@ namespace ExchangeRates
             _finance.LoadOldData(name);
             ShowOrganizations();
         }
-        private void ShowOldFile(string name, string currencyTitle, double from, double to, bool isBuy, bool isSale) // Made by Eugene
+        private void ShowOldFile(string name, string currencyTitle, double from, double to, bool isBuy, bool isSale) 
         {
             if (name == "")
             {
@@ -200,7 +200,7 @@ namespace ExchangeRates
             _finance.LoadOldData(name);
             ShowOrganizations(currencyTitle, from, to, isBuy, isSale);
         }
-        private void FillInFilesChoice() // Made by Eugene 
+        private void FillInFilesChoice() 
         {
             FileChoice.Items.Clear();
             var filesName = _finance.GetLoadedFilesName();

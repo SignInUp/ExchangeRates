@@ -60,12 +60,12 @@ namespace ExchangeRates.ViewModel
 
             return titlesList;
         }
-        public void LoadOldData(string name) // Made by Eugene 
+        public void LoadOldData(string name) 
         {
             var xml = SaveLoadXml.Load(name);
             _finance.UpdateData(xml);
         }
-        public string[] GetLoadedFilesName() // Made by Eugene 
+        public string[] GetLoadedFilesName() 
         {
             var files = Directory.GetFiles(SaveLoadXml.Path).ToList();
             for (var i = 0; i < files.Count; ++i)
