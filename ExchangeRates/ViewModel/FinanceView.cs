@@ -1,26 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ExchangeRates.Model;
+using ExchangeRates.SaveLoad;
 
 namespace ExchangeRates.ViewModel
 {
-    public static class FinanceView
+    public class FinanceView
     {
-        public static void UpdateData()
+        private readonly FinanceApi _finance;
+        public FinanceView()
         {
-            FinanceApi.UpdateData();
+            _finance = new FinanceApi();
         }
-        public static List<OrganizationViewModel> GetOrganizationsData()
+        public void UpdateData()
         {
-            var organizationsRawData = FinanceApi.GetOrganizations();
-            var cities = FinanceApi.GetCities();
-            //var regions = FinanceApi.GetRegions();
-            var currencies = FinanceApi.GetCurrencies();
-            var orgTypes = FinanceApi.GetOrgTypes();
+            _finance.UpdateData();
+        }
+        public List<OrganizationViewModel> GetOrganizationsData()
+        {
+            var organizationsRawData = _finance.GetOrganizations();
+            var cities = _finance.GetCities();
+            var currencies = _finance.GetCurrencies();
+            var orgTypes = _finance.GetOrgTypes();
 
             var organizationsViewData = new List<OrganizationViewModel>();
 
@@ -47,6 +49,34 @@ namespace ExchangeRates.ViewModel
 
             return organizationsViewData;
         }
+        public List<string> GetCurrenciesTitle()
+        {
+            var currencies = _finance.GetCurrencies();
+            var titlesList = new List<string>();
+            foreach (var currency in currencies)
+            {
+                titlesList.Add(currency.Title);
+            }
 
+            return titlesList;
+        }
+        public void LoadOldData(string name) // Made by Eugene 
+        {
+            var xml = SaveLoadXml.Load(name);
+            _finance.UpdateData(xml);
+        }
+        public string[] GetLoadedFilesName() // Made by Eugene 
+        {
+            var files = Directory.GetFiles(SaveLoadXml.Path).ToList();
+            for (var i = 0; i < files.Count; ++i)
+            {
+                files[i] = Path.GetFileNameWithoutExtension(files[i]);
+            }
+            return files.ToArray();
+        }
+        public void SaveData()
+        {
+            SaveLoadXml.Save(_finance.RawData);
+        }
     }
 }

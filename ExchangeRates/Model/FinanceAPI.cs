@@ -5,25 +5,24 @@ using System.Xml;
 
 namespace ExchangeRates.Model
 {
-    public static class FinanceApi
+    public class FinanceApi
     {
         private const string Url = "http://resources.finance.ua/ru/public/currency-cash.xml";
-        public static XmlDocument RawData { get; } = new XmlDocument();
+        public XmlDocument RawData { get; } = new XmlDocument();
 
         // Nodes names
         private const string Organizations = "organizations";
-        private const string OrgTypes = "org_types";
-        private const string Currencies = "currencies";
-        private const string     Advent = "currencies";
-        private const string Regions = "regions";
-        private const string Cities = "cities";
-        private const string Source = "source";
-        private const string Title = "title";
-        private const string Branch = "branch";
-        private const string Region = "region";
-        private const string City = "city";
-        private const string Phone = "phone";
-        private const string Address = "address";
+        private const string OrgTypes      = "org_types";
+        private const string Currencies    = "currencies";
+        private const string Regions       = "regions";
+        private const string Cities        = "cities";
+        private const string Source        = "source";
+        private const string Title         = "title";
+        private const string Branch        = "branch";
+        private const string Region        = "region";
+        private const string City          = "city";
+        private const string Phone         = "phone";
+        private const string Address       = "address";
 
         public static string GetValidValue(List<ExtraDataModel> data, string id)
         {
@@ -37,11 +36,20 @@ namespace ExchangeRates.Model
             }
             return value;
         }
-        public static void UpdateData()
+
+        public FinanceApi()
+        {
+            UpdateData();
+        }
+        public void UpdateData()
         {
             RawData.Load(Url);
+        }        
+        public void UpdateData(string xml)
+        {
+            RawData.LoadXml(xml);
         }
-        public static List<OrganizationModel> GetOrganizations()
+        public List<OrganizationModel> GetOrganizations()
         {
             var resultOrganizations = new List<OrganizationModel>();
             var xmlOrganizations = RawData.SelectNodes("/" + Source + "/" + Organizations)[0].ChildNodes;
@@ -104,7 +112,7 @@ namespace ExchangeRates.Model
             }
             return resultOrganizations;
         }
-        public static List<ExtraDataModel> GetCurrencies()
+        public List<ExtraDataModel> GetCurrencies()
         {
             var xmlCurrencies = RawData.SelectNodes("/" + Source + "/" + Currencies)[0].ChildNodes;
 
@@ -115,7 +123,7 @@ namespace ExchangeRates.Model
                     select new ExtraDataModel(id, title))
                 .ToList();
         }
-        public static List<ExtraDataModel> GetCities()
+        public List<ExtraDataModel> GetCities()
         {
             var xmlCities = RawData.SelectNodes("/" + Source + "/" + Cities)[0].ChildNodes;
 
@@ -126,7 +134,7 @@ namespace ExchangeRates.Model
                     select new ExtraDataModel(id, title))
                 .ToList();
         }
-        public static List<ExtraDataModel> GetRegions()
+        public List<ExtraDataModel> GetRegions()
         {
             var xmlRegions = RawData.SelectNodes("/" + Source + "/" + Regions)[0].ChildNodes;
 
@@ -137,7 +145,7 @@ namespace ExchangeRates.Model
                     select new ExtraDataModel(id, title))
                 .ToList();
         }
-        public static List<ExtraDataModel> GetOrgTypes()
+        public List<ExtraDataModel> GetOrgTypes()
         {
             var xmlOrgTypes = RawData.SelectNodes("/" + Source + "/" + OrgTypes)[0].ChildNodes;
 
