@@ -4,11 +4,15 @@ using System.Xml;
 
 namespace ExchangeRates.SaveLoad
 {
-    public static class SaveLoadXml
+    public class SaveLoadXml
     {
         public const string Path = @"D:\financeData\";
         private const string XmlExtension = ".xml";
-        public static void Save(XmlDocument document)
+        public SaveLoadXml()
+        {
+            Directory.CreateDirectory(Path);
+        }
+        public void Save(XmlDocument document)
         {
             var date = DateTime.Now.ToString().Replace(':', '.');
             Directory.CreateDirectory(Path);
@@ -16,7 +20,7 @@ namespace ExchangeRates.SaveLoad
             var writer = XmlWriter.Create(Path + date + XmlExtension, settings);
             document.Save(writer);
         }
-        public static string Load(string name)
+        public string Load(string name)
         {
             using (var reader = new StreamReader(Path + name + XmlExtension))
             {

@@ -9,9 +9,11 @@ namespace ExchangeRates.ViewModel
     public class FinanceView
     {
         private readonly FinanceApi _finance;
+        private readonly SaveLoadXml _saveLoad;
         public FinanceView()
         {
             _finance = new FinanceApi();
+            _saveLoad = new SaveLoadXml();
         }
         public void UpdateData()
         {
@@ -62,7 +64,7 @@ namespace ExchangeRates.ViewModel
         }
         public void LoadOldData(string name) 
         {
-            var xml = SaveLoadXml.Load(name);
+            var xml = _saveLoad.Load(name);
             _finance.UpdateData(xml);
         }
         public string[] GetLoadedFilesName() 
@@ -76,7 +78,7 @@ namespace ExchangeRates.ViewModel
         }
         public void SaveData()
         {
-            SaveLoadXml.Save(_finance.RawData);
+            _saveLoad.Save(_finance.RawData);
         }
     }
 }
