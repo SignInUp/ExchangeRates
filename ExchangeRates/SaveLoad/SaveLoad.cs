@@ -19,6 +19,7 @@ namespace ExchangeRates.SaveLoad
             var settings = new XmlWriterSettings { Indent = true };
             var writer = XmlWriter.Create(Path + date + XmlExtension, settings);
             document.Save(writer);
+            writer.Close();
         }
         public string Load(string name)
         {

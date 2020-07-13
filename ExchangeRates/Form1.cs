@@ -167,11 +167,11 @@ namespace ExchangeRates
             }
 
         }
-        private void UpdateLogic() // 
+        private void UpdateLogic() // Обновляет данные об организациях
         {
-            _finance.UpdateData(); // 
-            FillInCurrencyChoice();
-            FillInFilesChoice();
+            _finance.UpdateData(); // Само обновление данных
+            FillInCurrencyChoice(); // Заново заполняет список валют
+            FillInFilesChoice(); // Заново заполняет 
         }
         
         private void FillInCurrencyChoice()
