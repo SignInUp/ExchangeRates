@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using ExchangeRates.ViewModel;
+using Exception = System.Exception;
 
 namespace ExchangeRates
 {
     public partial class Form1 : Form
     {
-        private static void InvalidInputMessage(string errorText) // Метод для вывода сообщения об ошибке ввода
+        private static void InvalidInputMessage(string errorText) 
         {
-            const string caption = "Invalid input"; // Текст заголовка
+            const string caption = "Invalid input";
             MessageBox.Show(errorText, caption, MessageBoxButtons.OK, MessageBoxIcon.Error); 
-            // Вывод текста из errorText в окне с заголовком caption, кнопкой ОК и иконкой ошибки 
         }
 
         private const int CurrencyColumnId = 6; 
