@@ -15,11 +15,11 @@ namespace ExchangeRates.SaveLoad
         public void Save(XmlDocument document)
         {
             var date = DateTime.Now.ToString().Replace(':', '.');
-            Directory.CreateDirectory(Path);
             var settings = new XmlWriterSettings { Indent = true };
-            var writer = XmlWriter.Create(Path + date + XmlExtension, settings);
-            document.Save(writer);
-            writer.Close();
+            using (var writer = XmlWriter.Create(Path + date + XmlExtension, settings))
+            {
+                document.Save(writer);
+            }
         }
         public string Load(string name)
         {

@@ -8,16 +8,29 @@ namespace ExchangeRates.ViewModel
 {
     public class FinanceView
     {
-        private readonly FinanceApi _finance;
-        private readonly SaveLoadXml _saveLoad;
-        public FinanceView()
+        private readonly FinanceApi _finance = new FinanceApi();
+        private readonly SaveLoadXml _saveLoad = new SaveLoadXml();
+        public string[] GetLoadedFilesName() 
         {
-            _finance = new FinanceApi();
-            _saveLoad = new SaveLoadXml();
+            var files = Directory.GetFiles(SaveLoadXml.Path).ToList();
+            for (var i = 0; i < files.Count; ++i)
+            {
+                files[i] = Path.GetFileNameWithoutExtension(files[i]);
+            }
+            return files.ToArray();
+        }
+        public void LoadOldData(string name) 
+        {
+            var xml = _saveLoad.Load(name);
+            _finance.UpdateData(xml);
         }
         public void UpdateData()
         {
             _finance.UpdateData();
+        }
+        public void SaveData()
+        {
+            _saveLoad.Save(_finance.RawData);
         }
         public List<OrganizationViewModel> GetOrganizationsData()
         {
@@ -61,24 +74,6 @@ namespace ExchangeRates.ViewModel
             }
 
             return titlesList;
-        }
-        public void LoadOldData(string name) 
-        {
-            var xml = _saveLoad.Load(name);
-            _finance.UpdateData(xml);
-        }
-        public string[] GetLoadedFilesName() 
-        {
-            var files = Directory.GetFiles(SaveLoadXml.Path).ToList();
-            for (var i = 0; i < files.Count; ++i)
-            {
-                files[i] = Path.GetFileNameWithoutExtension(files[i]);
-            }
-            return files.ToArray();
-        }
-        public void SaveData()
-        {
-            _saveLoad.Save(_finance.RawData);
         }
     }
 }

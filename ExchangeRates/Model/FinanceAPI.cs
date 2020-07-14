@@ -12,17 +12,17 @@ namespace ExchangeRates.Model
 
         // Nodes names
         private const string Organizations = "organizations";
-        private const string OrgTypes      = "org_types";
         private const string Currencies    = "currencies";
-        private const string Regions       = "regions";
-        private const string Cities        = "cities";
-        private const string Source        = "source";
-        private const string Title         = "title";
-        private const string Branch        = "branch";
-        private const string Region        = "region";
-        private const string City          = "city";
-        private const string Phone         = "phone";
+        private const string OrgTypes      = "org_types";
         private const string Address       = "address";
+        private const string Regions       = "regions";
+        private const string Source        = "source";
+        private const string Region        = "region";
+        private const string Branch        = "branch";
+        private const string Cities        = "cities";
+        private const string Phone         = "phone";
+        private const string Title         = "title";
+        private const string City          = "city";
 
         public static string GetValidValue(List<ExtraDataModel> data, string id)
         {
