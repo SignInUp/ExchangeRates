@@ -1,4 +1,7 @@
-﻿namespace ExchangeRates
+﻿using System.Windows.Forms;
+using ExchangeRates.Api;
+
+namespace ExchangeRates
 {
     partial class Form1
     {
@@ -23,309 +26,141 @@
         #region Код, автоматически созданный конструктором форм Windows
 
         /// <summary>
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
-            this.UpdateData = new System.Windows.Forms.Button();
-            this.FindBanks = new System.Windows.Forms.Button();
-            this.OrganizationsGrid = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Organization = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrgType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.City = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Currency = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sale = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Buy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ToCurrency = new System.Windows.Forms.TextBox();
-            this.FromCurrency = new System.Windows.Forms.TextBox();
-            this.BuyChecked = new System.Windows.Forms.CheckBox();
-            this.SaleChecked = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.GetExchanges = new System.Windows.Forms.Button();
+            this.ExchangeGrid = new System.Windows.Forms.DataGridView();
+            this.TextName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CurrencyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CurrencyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExchangeRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CurrencyChoice = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.FileChoice = new System.Windows.Forms.ComboBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.ShowSelectedFile = new System.Windows.Forms.Button();
-            this.SaveButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.OrganizationsGrid)).BeginInit();
+            this.FilterGridChoice = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize) (this.ExchangeGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // UpdateData
+            // GetExchanges
             // 
-            this.UpdateData.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.UpdateData.Location = new System.Drawing.Point(929, 8);
-            this.UpdateData.Name = "UpdateData";
-            this.UpdateData.Size = new System.Drawing.Size(95, 21);
-            this.UpdateData.TabIndex = 1;
-            this.UpdateData.Text = "Обновить";
-            this.UpdateData.UseVisualStyleBackColor = true;
-            this.UpdateData.Click += new System.EventHandler(this.UpdateData_Click);
+            this.GetExchanges.Font = new System.Drawing.Font("Lucida Sans", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.GetExchanges.Location = new System.Drawing.Point(11, 12);
+            this.GetExchanges.Name = "GetExchanges";
+            this.GetExchanges.Size = new System.Drawing.Size(190, 38);
+            this.GetExchanges.TabIndex = 4;
+            this.GetExchanges.Text = "Найти ";
+            this.GetExchanges.UseVisualStyleBackColor = true;
+            this.GetExchanges.Click += new System.EventHandler(this.GetExchanges_Click);
             // 
-            // FindBanks
+            // ExchangeGrid
             // 
-            this.FindBanks.Location = new System.Drawing.Point(929, 29);
-            this.FindBanks.Name = "FindBanks";
-            this.FindBanks.Size = new System.Drawing.Size(95, 20);
-            this.FindBanks.TabIndex = 2;
-            this.FindBanks.Text = "Найти банки";
-            this.FindBanks.UseVisualStyleBackColor = true;
-            this.FindBanks.Click += new System.EventHandler(this.FindOrganizations_Click);
+            this.ExchangeGrid.AllowUserToAddRows = false;
+            this.ExchangeGrid.AllowUserToDeleteRows = false;
+            this.ExchangeGrid.AllowUserToOrderColumns = true;
+            this.ExchangeGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ExchangeGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {this.TextName, this.CurrencyName, this.CurrencyCode, this.Rate, this.ExchangeRate});
+            this.ExchangeGrid.Location = new System.Drawing.Point(207, 12);
+            this.ExchangeGrid.Name = "ExchangeGrid";
+            this.ExchangeGrid.ReadOnly = true;
+            this.ExchangeGrid.Size = new System.Drawing.Size(817, 657);
+            this.ExchangeGrid.TabIndex = 3;
             // 
-            // OrganizationsGrid
+            // TextName
             // 
-            this.OrganizationsGrid.AllowUserToAddRows = false;
-            this.OrganizationsGrid.AllowUserToDeleteRows = false;
-            this.OrganizationsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.OrganizationsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.Organization,
-            this.OrgType,
-            this.City,
-            this.Address,
-            this.Phone,
-            this.Currency,
-            this.Sale,
-            this.Buy});
-            this.OrganizationsGrid.Location = new System.Drawing.Point(14, 57);
-            this.OrganizationsGrid.Name = "OrganizationsGrid";
-            this.OrganizationsGrid.ReadOnly = true;
-            this.OrganizationsGrid.Size = new System.Drawing.Size(1010, 612);
-            this.OrganizationsGrid.TabIndex = 3;
+            this.TextName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TextName.DataPropertyName = "CurrencyTextName";
+            this.TextName.HeaderText = "Название валюты";
+            this.TextName.Name = "TextName";
+            this.TextName.ReadOnly = true;
+            this.TextName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // ID
+            // CurrencyName
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CurrencyName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CurrencyName.DataPropertyName = "CurrencyName";
+            this.CurrencyName.HeaderText = "Валюта";
+            this.CurrencyName.Name = "CurrencyName";
+            this.CurrencyName.ReadOnly = true;
+            this.CurrencyName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // Organization
+            // CurrencyCode
             // 
-            this.Organization.HeaderText = "Организация";
-            this.Organization.Name = "Organization";
-            this.Organization.ReadOnly = true;
-            this.Organization.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Organization.Width = 130;
+            this.CurrencyCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CurrencyCode.DataPropertyName = "CurrencyCode";
+            this.CurrencyCode.HeaderText = "Код";
+            this.CurrencyCode.Name = "CurrencyCode";
+            this.CurrencyCode.ReadOnly = true;
+            this.CurrencyCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // OrgType
+            // Rate
             // 
-            this.OrgType.HeaderText = "Тип организации";
-            this.OrgType.Name = "OrgType";
-            this.OrgType.ReadOnly = true;
-            this.OrgType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OrgType.Width = 120;
+            this.Rate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Rate.DataPropertyName = "Rate";
+            this.Rate.HeaderText = "Стоимость";
+            this.Rate.Name = "Rate";
+            this.Rate.ReadOnly = true;
+            this.Rate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // City
+            // ExchangeRate
             // 
-            this.City.HeaderText = "Город";
-            this.City.Name = "City";
-            this.City.ReadOnly = true;
-            this.City.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Address
-            // 
-            this.Address.HeaderText = "Адрес";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            this.Address.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Телефон";
-            this.Phone.Name = "Phone";
-            this.Phone.ReadOnly = true;
-            this.Phone.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Currency
-            // 
-            this.Currency.HeaderText = "Валюта";
-            this.Currency.Name = "Currency";
-            this.Currency.ReadOnly = true;
-            this.Currency.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Sale
-            // 
-            this.Sale.HeaderText = "Продажа";
-            this.Sale.Name = "Sale";
-            this.Sale.ReadOnly = true;
-            this.Sale.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Buy
-            // 
-            this.Buy.HeaderText = "Покупка";
-            this.Buy.Name = "Buy";
-            this.Buy.ReadOnly = true;
-            this.Buy.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ToCurrency
-            // 
-            this.ToCurrency.Location = new System.Drawing.Point(701, 29);
-            this.ToCurrency.Name = "ToCurrency";
-            this.ToCurrency.Size = new System.Drawing.Size(147, 20);
-            this.ToCurrency.TabIndex = 4;
-            this.ToCurrency.Text = "До";
-            // 
-            // FromCurrency
-            // 
-            this.FromCurrency.Location = new System.Drawing.Point(548, 29);
-            this.FromCurrency.Name = "FromCurrency";
-            this.FromCurrency.Size = new System.Drawing.Size(147, 20);
-            this.FromCurrency.TabIndex = 5;
-            this.FromCurrency.Text = "От (-1 для любых значений)";
-            // 
-            // BuyChecked
-            // 
-            this.BuyChecked.AutoSize = true;
-            this.BuyChecked.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BuyChecked.Location = new System.Drawing.Point(751, 7);
-            this.BuyChecked.Name = "BuyChecked";
-            this.BuyChecked.Size = new System.Drawing.Size(69, 17);
-            this.BuyChecked.TabIndex = 6;
-            this.BuyChecked.Text = "Покупка";
-            this.BuyChecked.UseVisualStyleBackColor = true;
-            // 
-            // SaleChecked
-            // 
-            this.SaleChecked.AutoSize = true;
-            this.SaleChecked.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.SaleChecked.Location = new System.Drawing.Point(673, 7);
-            this.SaleChecked.Name = "SaleChecked";
-            this.SaleChecked.Size = new System.Drawing.Size(72, 17);
-            this.SaleChecked.TabIndex = 7;
-            this.SaleChecked.Text = "Продажа";
-            this.SaleChecked.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(548, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(119, 20);
-            this.textBox1.TabIndex = 8;
-            this.textBox1.Text = "Жлаемый курс (в грн)";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ExchangeRate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ExchangeRate.DataPropertyName = "ExchangeDate";
+            this.ExchangeRate.HeaderText = "Дата установки цены";
+            this.ExchangeRate.Name = "ExchangeRate";
+            this.ExchangeRate.ReadOnly = true;
+            this.ExchangeRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // CurrencyChoice
             // 
-            this.CurrencyChoice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CurrencyChoice.FormattingEnabled = true;
-            this.CurrencyChoice.Location = new System.Drawing.Point(351, 28);
+            this.CurrencyChoice.Location = new System.Drawing.Point(12, 56);
             this.CurrencyChoice.Name = "CurrencyChoice";
-            this.CurrencyChoice.Size = new System.Drawing.Size(191, 21);
-            this.CurrencyChoice.TabIndex = 9;
+            this.CurrencyChoice.Size = new System.Drawing.Size(189, 21);
+            this.CurrencyChoice.TabIndex = 1;
             // 
-            // textBox2
+            // FilterGridChoice
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(351, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(191, 20);
-            this.textBox2.TabIndex = 10;
-            this.textBox2.Text = "Выбор валюты";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // FileChoice
-            // 
-            this.FileChoice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.FileChoice.FormattingEnabled = true;
-            this.FileChoice.Location = new System.Drawing.Point(115, 30);
-            this.FileChoice.Name = "FileChoice";
-            this.FileChoice.Size = new System.Drawing.Size(152, 21);
-            this.FileChoice.TabIndex = 11;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(115, 5);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(152, 20);
-            this.textBox3.TabIndex = 12;
-            this.textBox3.Text = "Выберите файл";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // ShowSelectedFile
-            // 
-            this.ShowSelectedFile.Location = new System.Drawing.Point(14, 30);
-            this.ShowSelectedFile.Name = "ShowSelectedFile";
-            this.ShowSelectedFile.Size = new System.Drawing.Size(95, 21);
-            this.ShowSelectedFile.TabIndex = 13;
-            this.ShowSelectedFile.Text = "Показать";
-            this.ShowSelectedFile.UseVisualStyleBackColor = true;
-            this.ShowSelectedFile.Click += new System.EventHandler(this.ShowSelectedFile_Click);
-            // 
-            // SaveButton
-            // 
-            this.SaveButton.Location = new System.Drawing.Point(854, 8);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(70, 21);
-            this.SaveButton.TabIndex = 14;
-            this.SaveButton.Text = "Сохранить";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            this.FilterGridChoice.Items.AddRange(CurrencyTypes.GetTypes());
+            this.FilterGridChoice.Location = new System.Drawing.Point(11, 83);
+            this.FilterGridChoice.Name = "FilterGridChoice";
+            this.FilterGridChoice.Size = new System.Drawing.Size(189, 21);
+            this.FilterGridChoice.SelectedIndex = 0;
+            this.FilterGridChoice.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (64)))), ((int) (((byte) (64)))), ((int) (((byte) (64)))));
             this.ClientSize = new System.Drawing.Size(1036, 681);
-            this.Controls.Add(this.SaveButton);
-            this.Controls.Add(this.ShowSelectedFile);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.FileChoice);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.FilterGridChoice);
             this.Controls.Add(this.CurrencyChoice);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.SaleChecked);
-            this.Controls.Add(this.BuyChecked);
-            this.Controls.Add(this.FromCurrency);
-            this.Controls.Add(this.ToCurrency);
-            this.Controls.Add(this.OrganizationsGrid);
-            this.Controls.Add(this.FindBanks);
-            this.Controls.Add(this.UpdateData);
+            this.Controls.Add(this.ExchangeGrid);
+            this.Controls.Add(this.GetExchanges);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Location = new System.Drawing.Point(15, 15);
             this.Name = "Form1";
-            this.Text = "Данные обмен валют";
-            ((System.ComponentModel.ISupportInitialize)(this.OrganizationsGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.ExchangeGrid)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
-
         }
+
+        private System.Windows.Forms.ComboBox FilterGridChoice;
+
+        private System.Windows.Forms.DataGridViewTextBoxColumn CurrencyCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CurrencyName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExchangeRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TextName;
+
+        private System.Windows.Forms.ComboBox CurrencyChoice;
+
+        private System.Windows.Forms.DataGridView ExchangeGrid;
+        private System.Windows.Forms.Button GetExchanges;
 
         #endregion
         private System.DirectoryServices.DirectoryEntry directoryEntry1;
-        private System.Windows.Forms.Button UpdateData;
-        private System.Windows.Forms.Button FindBanks;
-        private System.Windows.Forms.DataGridView OrganizationsGrid;
-        private System.Windows.Forms.TextBox ToCurrency;
-        private System.Windows.Forms.TextBox FromCurrency;
-        private System.Windows.Forms.CheckBox BuyChecked;
-        private System.Windows.Forms.CheckBox SaleChecked;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox CurrencyChoice;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Organization;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrgType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn City;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Currency;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sale;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Buy;
-        private System.Windows.Forms.ComboBox FileChoice;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button ShowSelectedFile;
-        private System.Windows.Forms.Button SaveButton;
     }
 }
 

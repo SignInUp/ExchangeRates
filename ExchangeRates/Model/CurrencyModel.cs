@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 
 namespace ExchangeRates.Model
 {
-    public struct CurrencyModel
+    
+    public class CurrencyModel
     {
-        public string Id { get; set; }
-        public string Buy { get; set; } // br
-        public string Sale { get; set; } // ar
-
-        public CurrencyModel(string id, string buy, string sale)
+        public string CurrencyCode { get; }          
+        public string TextName { get; }
+        public string Name { get; }
+        public string ExchangeDate { get; }
+        public string Rate { get; }
+        public CurrencyModel(string currencyCode, string textName, string name, string exchangeDate, string rate)
         {
-            Id = id;
-            Buy = buy;
-            Sale = sale;
+            CurrencyCode = currencyCode;
+            TextName = textName;
+            Name = name;
+            ExchangeDate = exchangeDate;
+            Rate = rate;
         }
     }
 }
